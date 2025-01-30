@@ -28,9 +28,9 @@ def create_app(test_config=None):
     app = Flask(__name__, static_url_path='/', static_folder=static_folder)
 
     app.config.from_mapping(
-        NEO4J_URI=os.getenv('bolt+s://93de8ec2e8459763b047c17ff32b9d73.neo4jsandbox.com:7687'),
-        NEO4J_USERNAME=os.getenv('neo4j'),
-        NEO4J_PASSWORD=os.getenv('photograph-ingredients-units'),
+        NEO4J_URI=os.getenv('NEO4J_URI'),
+        NEO4J_USERNAME=os.getenv('NEO4J_USERNAME'),
+        NEO4J_PASSWORD=os.getenv('NEO4J_PASSWORD'),
         NEO4J_DATABASE=os.getenv('NEO4J_DATABASE'),
         JWT_SECRET_KEY=os.getenv('JWT_SECRET'),
         JWT_AUTH_HEADER_PREFIX="Bearer",
@@ -50,9 +50,9 @@ def create_app(test_config=None):
 
     with app.app_context():
         init_driver(
-            app.config.get('bolt+s://93de8ec2e8459763b047c17ff32b9d73.neo4jsandbox.com:7687'),
-            app.config.get('neo4j'),
-            app.config.get('photograph-ingredients-units'),
+            app.config.get('NEO4J_URI'),
+            app.config.get('NEO4J_USERNAME'),
+            app.config.get('NEO4J_PASSWORD),
         )
 
     # JWT
